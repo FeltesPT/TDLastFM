@@ -25,6 +25,7 @@
 		E7BE97161F18D7260040DD94 /* ArtistParserProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BE97151F18D7260040DD94 /* ArtistParserProtocol.swift */; };
 		E7BE97181F18D7E90040DD94 /* ArtistParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BE97171F18D7E90040DD94 /* ArtistParser.swift */; };
 		E7BE971A1F18DFB10040DD94 /* ManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BE97191F18DFB10040DD94 /* ManagerProtocol.swift */; };
+		E7CAD85F1F19376500ADD6BA /* ArtistListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CAD85E1F19376500ADD6BA /* ArtistListTableViewCell.swift */; };
 		E7E84EF71F18FC8000850FDD /* ArtistDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E84EF61F18FC8000850FDD /* ArtistDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +66,7 @@
 		E7BE97151F18D7260040DD94 /* ArtistParserProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtistParserProtocol.swift; sourceTree = "<group>"; };
 		E7BE97171F18D7E90040DD94 /* ArtistParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtistParser.swift; sourceTree = "<group>"; };
 		E7BE97191F18DFB10040DD94 /* ManagerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagerProtocol.swift; sourceTree = "<group>"; };
+		E7CAD85E1F19376500ADD6BA /* ArtistListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtistListTableViewCell.swift; sourceTree = "<group>"; };
 		E7E84EF61F18FC8000850FDD /* ArtistDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtistDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -130,6 +132,7 @@
 				E7BE97091F17EA210040DD94 /* Protocols */,
 				E7508F5B1F175C1300FD313C /* Services */,
 				E7508F571F175A9B00FD313C /* ViewControllers */,
+				E7CAD85D1F19375200ADD6BA /* Views */,
 			);
 			path = TDLastFM;
 			sourceTree = "<group>";
@@ -206,6 +209,14 @@
 				E7BE97171F18D7E90040DD94 /* ArtistParser.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		E7CAD85D1F19375200ADD6BA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E7CAD85E1F19376500ADD6BA /* ArtistListTableViewCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		F40FC1AA8B0488EB37B5B17D /* Frameworks */ = {
@@ -433,6 +444,7 @@
 				E7BE97101F18C6600040DD94 /* ServiceManager.swift in Sources */,
 				E7BE97121F18C7130040DD94 /* APIRequest.swift in Sources */,
 				E7E84EF71F18FC8000850FDD /* ArtistDetailsViewController.swift in Sources */,
+				E7CAD85F1F19376500ADD6BA /* ArtistListTableViewCell.swift in Sources */,
 				E7508F5D1F175C1C00FD313C /* APIConfig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

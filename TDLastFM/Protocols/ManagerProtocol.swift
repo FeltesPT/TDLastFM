@@ -8,11 +8,18 @@
 
 import Foundation
 
-enum ManagerResultType {
+protocol ResultType { }
+
+enum ArtistListResultType: ResultType {
     case success(artistList: [Artist])
     case failure(error: Error)
 }
 
+enum ArtistInfoResultType: ResultType {
+    case success(artistInfo: JSONDictionary)
+    case failure(error: Error)
+}
+
 protocol ManagerResult {
-    func performAPIRequest(parameters: [String:String], completionBlock: @escaping (ManagerResultType) -> Void)
+    func performAPIRequest(parameters: [String:String], completionBlock: @escaping (ResultType) -> Void)
 }

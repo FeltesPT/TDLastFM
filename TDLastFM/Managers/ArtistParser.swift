@@ -13,7 +13,7 @@ public typealias JSONDictionary = [String: JSONObject]
 public typealias JSONArray = [JSONObject]
 
 final class ArtistParser: ArtistParserType {
-    func parseArtists(data: [String: Any], completionBlock: (ArtistParseResult) -> Void) {
+    func parseArtists(data: [String: Any], completionBlock: (ArtistParseResultType) -> Void) {
         
         guard let results = data["results"] as? JSONDictionary else  {
             return completionBlock(.failure(error: ParseError.parseError(reason: "Results not found")))

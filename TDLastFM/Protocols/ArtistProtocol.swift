@@ -13,4 +13,8 @@ protocol ArtistProtocol {
     var listeners: String { get }
     var url: String { get }
     var image: [String:String] { get }
+    var summary: String? { get }
+    var content: String? { get }
+    
+    func getInfoFrom(json: JSONDictionary)
 }

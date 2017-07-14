@@ -13,6 +13,8 @@ final class Artist: NSObject, ArtistProtocol {
     var listeners: String
     var url: String
     var image: [String:String]
+    var summary: String?
+    var content: String?
     
     init(name: String, listeners: String, url: String, image: [String:String]) {
         self.name = name
@@ -24,7 +26,7 @@ final class Artist: NSObject, ArtistProtocol {
     }
     
     static func parseArtist(artistRaw: JSONDictionary) -> Artist? {
-    
+        
         if let name = artistRaw["name"] as? String,
             let listeners = artistRaw["listeners"] as? String,
             let url = artistRaw["url"] as? String,
@@ -43,5 +45,16 @@ final class Artist: NSObject, ArtistProtocol {
         }
         
         return nil
+    }
+    
+    public func getInfoFrom(json: JSONDictionary) {
+        
+        if let artist = json["artist"] as? JSONDictionary,
+            let bio = artist["bio"] as? JSONDictionary {
+            summary = bio["summary"] as? String
+            content = bio["content"] as? String
+        }
+        
+        
     }
 }

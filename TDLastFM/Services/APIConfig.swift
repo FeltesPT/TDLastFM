@@ -8,6 +8,11 @@
 
 import Foundation
 
+enum MethodType: String {
+    case search = "artist.search"
+    case info = "artist.getinfo"
+}
+
 struct APIConfig {
     let apiScheme: String
     let apiHost: String

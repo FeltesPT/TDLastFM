@@ -27,6 +27,7 @@ class ArtistsViewController: UIViewController {
             tableView.dataSource = self
         }
     }
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     // Private properties
     fileprivate let serviceManager = ServiceManager()
@@ -47,7 +48,7 @@ class ArtistsViewController: UIViewController {
         if let targetViewController = segue.destination as? ArtistDetailsViewController {
             guard let indexPath = selectedIndexPath,
                 let artist = artistList?[indexPath.row] else {
-                fatalError("Can't select artist on IndexPath: \(String(describing: selectedIndexPath))")
+                    fatalError("Can't select artist on IndexPath: \(String(describing: selectedIndexPath))")
             }
             targetViewController.artist = artist
         }
@@ -78,22 +79,25 @@ extension ArtistsViewController: UISearchBarDelegate {
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print("Searching...")
+        activityIndicator.startAnimating()
         
         guard let searchText = searchBar.text else {
             return
         }
         
-        let parameters = ["method":"artist.search", "artist": searchText]
+        let parameters = ["method": MethodType.search.rawValue, "artist": searchText]
         
-        serviceManager.performAPIRequest(parameters: parameters) { (result) in
+        serviceManager.performAPIRequest(parameters: parameters) { [weak self] (result) in
             switch result {
-            case let .success(artistList: json):
-                self.artistList = json
-                self.tableView.reloadData()
-            case let .failure(error: error):
-                self.showError(error)
+            case let ArtistListResultType.success(artistList: json):
+                self?.artistList = json
+                self?.tableView.reloadData()
+            case let ArtistListResultType.failure(error: error):
+                self?.showError(error)
+            default:
+                self?.showError(RequestError.jsonParsing(message: "Error performing Artist List API Request"))
             }
+            self?.activityIndicator.stopAnimating()
         }
         
         searchBar.resignFirstResponder()
@@ -112,7 +116,7 @@ extension ArtistsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ArtistCell") else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ArtistCell") as? ArtistListTableViewCell else {
             fatalError("Can't")
         }
         
@@ -120,19 +124,7 @@ extension ArtistsViewController: UITableViewDataSource {
             return cell
         }
         
-        cell.textLabel?.text = artist.name
-        cell.detailTextLabel?.text = "Listeners: \(artist.listeners)"
-        
-        if let imageUrlString = artist.image["small"],
-            let url = URL(string: imageUrlString) {
-            
-            let data = try? Data(contentsOf: url)
-            
-            if let imageData = data {
-                cell.imageView?.image = UIImage(data: imageData)
-            }
-            
-        }
+        cell.customiseWith(artist: artist)
         
         return cell
     }

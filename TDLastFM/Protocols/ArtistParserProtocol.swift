@@ -12,11 +12,11 @@ enum ParseError: Error {
     case parseError(reason: String)
 }
 
-enum ArtistParseResult {
+enum ArtistParseResultType {
     case success(artist: [Artist])
     case failure(error: Error)
 }
 
 protocol ArtistParserType {
-    func parseArtists(data: [String: Any], completionBlock: (ArtistParseResult) -> Void)
+    func parseArtists(data: [String: Any], completionBlock: (ArtistParseResultType) -> Void)
 }

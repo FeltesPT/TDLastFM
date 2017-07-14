@@ -20,21 +20,28 @@ final class ServiceManager: NSObject {
 
 extension ServiceManager: ManagerResult {
     
-    public func performAPIRequest(parameters: [String:String], completionBlock: @escaping (ManagerResultType) -> Void) {
+    public func performAPIRequest(parameters: [String:String], completionBlock: @escaping (ResultType) -> Void) {
         request.performAPIRequest(parameters: parameters) { (result) in
             switch result {
             case let .success(data: json):
-                self.parser.parseArtists(data: json, completionBlock: { (result) in
-                    switch result {
-                    case let .success(artist: artistList):
-                        completionBlock(.success(artistList: artistList))
-                    case let .failure(error: error):
-                        completionBlock(.failure(error: error))
-                    }
-                })
-                break
+                if parameters["method"] == MethodType.search.rawValue {
+                    self.parser.parseArtists(data: json, completionBlock: { (result) in
+                        switch result {
+                        case let .success(artist: artistList):
+                            completionBlock(ArtistListResultType.success(artistList: artistList))
+                        case let .failure(error: error):
+                            completionBlock(ArtistListResultType.failure(error: error))
+                        }
+                    })
+                } else if parameters["method"] == MethodType.info.rawValue {
+                    completionBlock(ArtistInfoResultType.success(artistInfo: json))
+                }
             case let .failure(error: error):
-                completionBlock(ManagerResultType.failure(error: error))
+                if parameters["method"] == MethodType.search.rawValue {
+                    completionBlock(ArtistListResultType.failure(error: error))
+                } else if parameters["method"] == MethodType.info.rawValue {
+                    completionBlock(ArtistInfoResultType.failure(error: error))
+                }
             }
         }
     }
