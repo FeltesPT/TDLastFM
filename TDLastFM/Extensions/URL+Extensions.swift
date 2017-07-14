@@ -36,6 +36,3 @@ extension URL {
         return components.url
     }
 }
-
-
-//http://ws.audioscrobbler.com/2.0/?method=album.search&album=believe&api_key=YOUR_API_KEY&format=json

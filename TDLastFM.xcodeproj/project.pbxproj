@@ -22,6 +22,10 @@
 		E7BE97101F18C6600040DD94 /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BE970F1F18C6600040DD94 /* ServiceManager.swift */; };
 		E7BE97121F18C7130040DD94 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BE97111F18C7130040DD94 /* APIRequest.swift */; };
 		E7BE97141F18C8730040DD94 /* RequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BE97131F18C8730040DD94 /* RequestService.swift */; };
+		E7BE97161F18D7260040DD94 /* ArtistParserProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BE97151F18D7260040DD94 /* ArtistParserProtocol.swift */; };
+		E7BE97181F18D7E90040DD94 /* ArtistParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BE97171F18D7E90040DD94 /* ArtistParser.swift */; };
+		E7BE971A1F18DFB10040DD94 /* ManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BE97191F18DFB10040DD94 /* ManagerProtocol.swift */; };
+		E7E84EF71F18FC8000850FDD /* ArtistDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E84EF61F18FC8000850FDD /* ArtistDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +62,10 @@
 		E7BE970F1F18C6600040DD94 /* ServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceManager.swift; sourceTree = "<group>"; };
 		E7BE97111F18C7130040DD94 /* APIRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 		E7BE97131F18C8730040DD94 /* RequestService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestService.swift; sourceTree = "<group>"; };
+		E7BE97151F18D7260040DD94 /* ArtistParserProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtistParserProtocol.swift; sourceTree = "<group>"; };
+		E7BE97171F18D7E90040DD94 /* ArtistParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtistParser.swift; sourceTree = "<group>"; };
+		E7BE97191F18DFB10040DD94 /* ManagerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagerProtocol.swift; sourceTree = "<group>"; };
+		E7E84EF61F18FC8000850FDD /* ArtistDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtistDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +148,7 @@
 			children = (
 				E7508F3B1F175A8300FD313C /* Main.storyboard */,
 				E7BE970C1F18BE720040DD94 /* ArtistsViewController.swift */,
+				E7E84EF61F18FC8000850FDD /* ArtistDetailsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -184,6 +193,8 @@
 			children = (
 				E7BE970A1F17EA750040DD94 /* ArtistProtocol.swift */,
 				E7BE97111F18C7130040DD94 /* APIRequest.swift */,
+				E7BE97151F18D7260040DD94 /* ArtistParserProtocol.swift */,
+				E7BE97191F18DFB10040DD94 /* ManagerProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -192,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				E7BE970F1F18C6600040DD94 /* ServiceManager.swift */,
+				E7BE97171F18D7E90040DD94 /* ArtistParser.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -410,13 +422,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				E7BE97051F17E3AA0040DD94 /* URL+Extensions.swift in Sources */,
+				E7BE97161F18D7260040DD94 /* ArtistParserProtocol.swift in Sources */,
 				E7BE97141F18C8730040DD94 /* RequestService.swift in Sources */,
 				E7508F381F175A8300FD313C /* AppDelegate.swift in Sources */,
 				E7BE97081F17E9CB0040DD94 /* Artist.swift in Sources */,
+				E7BE971A1F18DFB10040DD94 /* ManagerProtocol.swift in Sources */,
+				E7BE97181F18D7E90040DD94 /* ArtistParser.swift in Sources */,
 				E7BE970D1F18BE720040DD94 /* ArtistsViewController.swift in Sources */,
 				E7BE970B1F17EA750040DD94 /* ArtistProtocol.swift in Sources */,
 				E7BE97101F18C6600040DD94 /* ServiceManager.swift in Sources */,
 				E7BE97121F18C7130040DD94 /* APIRequest.swift in Sources */,
+				E7E84EF71F18FC8000850FDD /* ArtistDetailsViewController.swift in Sources */,
 				E7508F5D1F175C1C00FD313C /* APIConfig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

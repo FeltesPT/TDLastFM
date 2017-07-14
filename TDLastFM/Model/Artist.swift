@@ -8,22 +8,40 @@
 
 import Foundation
 
-final class Artist: NSObject, ArtistType {
+final class Artist: NSObject, ArtistProtocol {
     var name: String
-    var mbid: String
+    var listeners: String
     var url: String
-    var image_small: String
-    var image: String
-    var streamable: Bool
+    var image: [String:String]
     
-    init(name: String, mbid: String, url: String, image_small: String, image: String, streamable: Bool) {
+    init(name: String, listeners: String, url: String, image: [String:String]) {
         self.name = name
-        self.mbid = mbid
+        self.listeners = listeners
         self.url = url
-        self.image_small = image_small
         self.image = image
-        self.streamable = streamable
         
         super.init()
+    }
+    
+    static func parseArtist(artistRaw: JSONDictionary) -> Artist? {
+    
+        if let name = artistRaw["name"] as? String,
+            let listeners = artistRaw["listeners"] as? String,
+            let url = artistRaw["url"] as? String,
+            let images = artistRaw["image"] as? [[String:String]] {
+            
+            var imageDict = [String:String]()
+            
+            for image in images {
+                
+                if let key = image["size"] {
+                    imageDict[key] = image["#text"]
+                }
+            }
+            
+            return Artist.init(name: name, listeners: listeners, url: url, image: imageDict)
+        }
+        
+        return nil
     }
 }

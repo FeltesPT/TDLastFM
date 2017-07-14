@@ -30,6 +30,8 @@ class ArtistsViewController: UIViewController {
     
     // Private properties
     fileprivate let serviceManager = ServiceManager()
+    fileprivate var artistList: [Artist]? = nil
+    fileprivate var selectedIndexPath: IndexPath? = nil
     
     // Life cicle
     override func viewDidLoad() {
@@ -42,7 +44,13 @@ class ArtistsViewController: UIViewController {
     
     // Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        if let targetViewController = segue.destination as? ArtistDetailsViewController {
+            guard let indexPath = selectedIndexPath,
+                let artist = artistList?[indexPath.row] else {
+                fatalError("Can't select artist on IndexPath: \(String(describing: selectedIndexPath))")
+            }
+            targetViewController.artist = artist
+        }
     }
     
     // functions
@@ -73,38 +81,70 @@ extension ArtistsViewController: UISearchBarDelegate {
         print("Searching...")
         
         guard let searchText = searchBar.text else {
-            return 
+            return
         }
         
         let parameters = ["method":"artist.search", "artist": searchText]
         
         serviceManager.performAPIRequest(parameters: parameters) { (result) in
             switch result {
-            case let .success(data: json):
-                print(json)
+            case let .success(artistList: json):
+                self.artistList = json
+                self.tableView.reloadData()
             case let .failure(error: error):
                 self.showError(error)
             }
         }
+        
+        searchBar.resignFirstResponder()
+        toggleSearch()
     }
 }
 
 extension ArtistsViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 0
+        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return artistList?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ArtistCell") else {
+            fatalError("Can't")
+        }
+        
+        guard let artist = artistList?[indexPath.row] else {
+            return cell
+        }
+        
+        cell.textLabel?.text = artist.name
+        cell.detailTextLabel?.text = "Listeners: \(artist.listeners)"
+        
+        if let imageUrlString = artist.image["small"],
+            let url = URL(string: imageUrlString) {
+            
+            let data = try? Data(contentsOf: url)
+            
+            if let imageData = data {
+                cell.imageView?.image = UIImage(data: imageData)
+            }
+            
+        }
+        
+        return cell
     }
     
 }
 
 extension ArtistsViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        selectedIndexPath = indexPath
+        
+        performSegue(withIdentifier: "showDetails", sender: self)
+    }
 }
