@@ -31,8 +31,10 @@ class ArtistsViewController: UIViewController {
     
     // Private properties
     fileprivate let serviceManager = ServiceManager()
-    fileprivate var artistList: [Artist]? = nil
+    fileprivate var artistList: [Artist]? = [Artist]()
     fileprivate var selectedIndexPath: IndexPath? = nil
+    
+    fileprivate var actualPage: Int = 1
     
     // Life cicle
     override func viewDidLoad() {
@@ -81,16 +83,26 @@ extension ArtistsViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         activityIndicator.startAnimating()
         
+        // Reset array in case of new search
+        artistList = [Artist]()
+        
+        performSearch()
+        
+        searchBar.resignFirstResponder()
+        toggleSearch()
+    }
+    
+    func performSearch() {
         guard let searchText = searchBar.text else {
             return
         }
         
-        let parameters = ["method": MethodType.search.rawValue, "artist": searchText]
+        let parameters = ["method": MethodType.search.rawValue, "artist": searchText, "page" : "\(actualPage)"]
         
         serviceManager.performAPIRequest(parameters: parameters) { [weak self] (result) in
             switch result {
             case let ArtistListResultType.success(artistList: json):
-                self?.artistList = json
+                self?.artistList?.append(contentsOf: json)
                 self?.tableView.reloadData()
             case let ArtistListResultType.failure(error: error):
                 self?.showError(error)
@@ -99,9 +111,6 @@ extension ArtistsViewController: UISearchBarDelegate {
             }
             self?.activityIndicator.stopAnimating()
         }
-        
-        searchBar.resignFirstResponder()
-        toggleSearch()
     }
 }
 
@@ -129,6 +138,13 @@ extension ArtistsViewController: UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        if let list = artistList, indexPath.row == list.count - 3 {
+            actualPage += 1
+            performSearch()
+        }
+    }
 }
 
 extension ArtistsViewController: UITableViewDelegate {
