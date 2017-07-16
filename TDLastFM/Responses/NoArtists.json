@@ -1,0 +1,17 @@
+{
+    "results":{
+        "opensearch:Query":{
+            "#text":"",
+            "role":"request",
+            "searchTerms":"Queen",
+            "startPage":"1"
+        },
+        "opensearch:totalResults":"61422",
+        "opensearch:startIndex":"0",
+        "opensearch:itemsPerPage":"30",
+        "artistmatches":{},
+        "@attr":{
+            "for":"Queen"
+        }
+    }
+}

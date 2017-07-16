@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		35508EFB8947E478A33C33CC /* Pods_TDLastFMTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1C12121C629D36E99AB447E /* Pods_TDLastFMTests.framework */; };
 		A521FDE1ECAA30450CD4DC73 /* Pods_TDLastFM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CFC87A564858FA5790BA7DA /* Pods_TDLastFM.framework */; };
+		E72A6A9D1F1B654F00C1DFBB /* NormalResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = E72A6A9B1F1B653500C1DFBB /* NormalResponse.json */; };
+		E72A6AA01F1B67F700C1DFBB /* NoResults.json in Resources */ = {isa = PBXBuildFile; fileRef = E72A6A9E1F1B673900C1DFBB /* NoResults.json */; };
+		E72A6AA21F1B693F00C1DFBB /* NoArtists.json in Resources */ = {isa = PBXBuildFile; fileRef = E72A6AA11F1B693F00C1DFBB /* NoArtists.json */; };
+		E72A6AA41F1B69F200C1DFBB /* NoArtistMatches.json in Resources */ = {isa = PBXBuildFile; fileRef = E72A6AA31F1B69F200C1DFBB /* NoArtistMatches.json */; };
 		E7508F381F175A8300FD313C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7508F371F175A8300FD313C /* AppDelegate.swift */; };
 		E7508F3D1F175A8300FD313C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7508F3B1F175A8300FD313C /* Main.storyboard */; };
 		E7508F3F1F175A8300FD313C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7508F3E1F175A8300FD313C /* Assets.xcassets */; };
@@ -46,6 +50,10 @@
 		808156B30C9494978407E065 /* Pods-TDLastFMTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TDLastFMTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TDLastFMTests/Pods-TDLastFMTests.debug.xcconfig"; sourceTree = "<group>"; };
 		917053B552D7CEFB9DE3ABE4 /* Pods-TDLastFM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TDLastFM.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TDLastFM/Pods-TDLastFM.debug.xcconfig"; sourceTree = "<group>"; };
 		A1C12121C629D36E99AB447E /* Pods_TDLastFMTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TDLastFMTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E72A6A9B1F1B653500C1DFBB /* NormalResponse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = NormalResponse.json; sourceTree = "<group>"; };
+		E72A6A9E1F1B673900C1DFBB /* NoResults.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = NoResults.json; sourceTree = "<group>"; };
+		E72A6AA11F1B693F00C1DFBB /* NoArtists.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = NoArtists.json; sourceTree = "<group>"; };
+		E72A6AA31F1B69F200C1DFBB /* NoArtistMatches.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = NoArtistMatches.json; sourceTree = "<group>"; };
 		E7508F341F175A8300FD313C /* TDLastFM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TDLastFM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7508F371F175A8300FD313C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E7508F3C1F175A8300FD313C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -99,6 +107,17 @@
 				70338E57BC670D3F83B929DC /* Pods-TDLastFMTests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		E72A6A9A1F1B652D00C1DFBB /* Responses */ = {
+			isa = PBXGroup;
+			children = (
+				E72A6AA31F1B69F200C1DFBB /* NoArtistMatches.json */,
+				E72A6AA11F1B693F00C1DFBB /* NoArtists.json */,
+				E72A6A9E1F1B673900C1DFBB /* NoResults.json */,
+				E72A6A9B1F1B653500C1DFBB /* NormalResponse.json */,
+			);
+			path = Responses;
 			sourceTree = "<group>";
 		};
 		E7508F2B1F175A8300FD313C = {
@@ -159,6 +178,7 @@
 		E7508F5A1F175AAA00FD313C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E72A6A9A1F1B652D00C1DFBB /* Responses */,
 				E7508F3E1F175A8300FD313C /* Assets.xcassets */,
 				E7508F401F175A8300FD313C /* LaunchScreen.storyboard */,
 				E7508F431F175A8300FD313C /* Info.plist */,
@@ -329,6 +349,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E72A6AA21F1B693F00C1DFBB /* NoArtists.json in Resources */,
+				E72A6AA41F1B69F200C1DFBB /* NoArtistMatches.json in Resources */,
+				E72A6A9D1F1B654F00C1DFBB /* NormalResponse.json in Resources */,
+				E72A6AA01F1B67F700C1DFBB /* NoResults.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
